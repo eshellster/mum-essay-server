@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title essay mu:m english
+  body
+    h1 Register
+    form(action='/auth/register', method='post')
+      p
+        input(type='text', name='username', placeholder='성함을 입력해주세요.', autofocus='', required='')
+      p
+        input(type='password', name='password', autocomplete='off', placeholder='비밀번호를 입력해주세요.', pattern='.{4,}')
+      p
+        input(type='tel', name='phone', placeholder='휴대전화번호',required='')
+      p
+        input(type='email', name='email', placeholder='email 주소', pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', required='')
+      p
+        input(type='text', name='displayName', placeholder='캠퍼스 이름', required='')
+      p
+        input(type='submit')

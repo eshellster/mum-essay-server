@@ -1,0 +1,153 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title essay mu:m english
+    style(type='text/css').
+      @font-face {
+      font-family: 'Swagger00';
+      src: url('/public/css/webfont/Swagger00/Swagger00.eot?#iefix') format('embedded-opentype'),  url('/public/css/webfont/Swagger00/Swagger00.otf')  format('opentype'),
+      url('/public/css/webfont/Swagger00/Swagger00.woff') format('woff'), url('/public/css/webfont/Swagger00/Swagger00.ttf')  format('truetype'), url('/public/css/webfont/Swagger00/Swagger00.svg#Swagger00') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      }
+      body { font-family: 'Swagger00' !important; }
+      h1, h2, h3, h4 { font-weight: normal; }
+      .reg { color:black; background:white; }
+      .inverse { color:white; background:black; }
+      .container{
+      background-color: #FECA30;
+      height:80px;
+      width:720px;
+      display:flex;
+      flex-direction:row;
+      align-items: center
+      }
+      #background{
+      border: solid 1px gray;
+      height: 540px;
+      width: 720px;
+      }
+      .photozone{
+      width: 720px;
+      margin-top: 90px;
+      display: flex;
+      flex-direction: row-reverse;
+      }
+      #photo img{
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 150px;
+      width: auto;
+      border-radius: 100%;
+      }
+      .span{
+      margin-top 10px;
+      margin-right: 20px;
+      border-radius: 100%;
+      padding: 0.5rem;
+      border: 1px solid gray;
+      }
+      #logo{
+      background: url(http://eshell.iptime.org/server_mum/sourceImages/black.svg);
+      height: 68px;
+      background-repeat: no-repeat;
+      position: relative;
+      width: 73px;
+      margin: 7px;
+      }
+      #profile{
+      font-size: 48px;
+      margin: 17px;
+      flex-grow: 1
+      }
+      #center{
+      font-size: 48px;
+      margin: 17px
+      }
+      .layer{
+      position: absolute
+      }
+      .button a{
+      margin-left: 15px;
+      font-size:16px;
+      }
+
+  body
+  if user
+    li
+      tb.deactive
+        a(href='/auth/logout') Logout
+      tb
+        a(href='/topic/present') essay 등록현황
+      tb
+        h4= user.username + " 원장님"
+      tb
+        h6="연락처 : " + user.phone + "  email : " + user.email
+  else
+    li
+      tb
+        a(href='/auth/register') 원장님등록
+      tb
+        a(href='/auth/login') 로그인
+  h1
+    a(href='/topic/present') 뮤엠영어 에세이 전시회 및 발표회
+    ul#account
+      if user
+        h3(style='color:purple')=user.displayName
+
+  if user
+    h2
+      a(href='/topic') 학생 등록 현황
+    ul
+      each topi in topics
+        li
+          a(href='/topic/'+topi.id)= topi.name
+    ul
+      li
+        a(href='/topic/add') 참가자 등록
+    ul
+      if topic
+        .button
+          h2=topic.name+' 발표회 배경 미리보기   '
+            a(href='/topic/'+topic.id+'/selectBGImg') 배경이미지 선택
+
+            a(href='/topic/'+topic.id+'/addBGImg') 배경이미지 추가
+        header
+          #background
+            .layer
+              .BG
+                img(src=bgimgUrl+topic.bgFileName, alt='')
+            .layer
+              .container
+                #logo
+                #profile=topic.name+' '+topic.school+' '+topic.grade
+                #center=campursName.displayName
+            .layer
+              .photozone
+                .span
+                  #photo
+                    img(src=imagesUrl+topic.photoId, alt='', width='150')
+
+        artcle
+          if topic
+            h2= topic.title
+            = topic.description
+            h2= topic.name+' 등록정보'
+        -topi = topic.topic
+        if topic.topic == null
+          -topi = '미정'
+        p= '발표 topic : '+ topi
+        p= '코스 : '+ topic.course
+        p= '레벨 : '+ topic.level
+        p= '학교 : '+ topic.school
+        p= '학년 : '+ topic.grade
+        img(src=imagesUrl+topic.photoId, alt='',width="150")
+        li
+          tb
+            a(href='/topic/'+topic.id+'/edit') 학생정보수정
+          tb
+            a(href='/topic/'+topic.id+'/photoEdit') 사진수정
+        li
+          a(href='/topic/'+topic.id+'/delete') 학생정보삭제

@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title essay mu:m english
+    style(type='text/css').
+      @font-face {
+      font-family: 'Swagger00';
+      src: url('/public/css/webfont/Swagger00/Swagger00.eot?#iefix') format('embedded-opentype'),  url('/public/css/webfont/Swagger00/Swagger00.otf')  format('opentype'),
+      url('/public/css/webfont/Swagger00/Swagger00.woff') format('woff'), url('/public/css/webfont/Swagger00/Swagger00.ttf')  format('truetype'), url('/public/css/webfont/Swagger00/Swagger00.svg#Swagger00') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      }
+      body { font-family: 'Swagger00' !important; background-color: black;}
+      h1, h2, h3, h4 { font-weight: normal; }
+      .reg { color:black; background:white; }
+      .inverse { color:white; background:black; }
+      .container{
+      background-color: #FECA30;
+      height:80px;
+      width:720px;
+      display:flex;
+      flex-direction:row;
+      align-items: center
+      }
+      #background{
+      border: solid 1px black;
+      height: 540px;
+      width: 720px;
+      }
+      .photozone{
+      width: 720px;
+      margin-top: 90px;
+      display: flex;
+      flex-direction: row-reverse;
+      }
+      #photo img{
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 150px;
+      width: auto;
+      border-radius: 100%;
+      }
+      .span{
+      margin-top 10px;
+      margin-right: 20px;
+      border-radius: 100%;
+      padding: 0.5rem;
+      border: 1px solid gray;
+      }
+      #logo{
+      background: url(http://eshell.iptime.org/server_mum/sourceImages/black.svg);
+      height: 68px;
+      background-repeat: no-repeat;
+      position: relative;
+      width: 73px;
+      margin: 7px;
+      }
+      #profile{
+      font-size: 48px;
+      margin: 17px;
+      flex-grow: 1
+      }
+      #center{
+      font-size: 48px;
+      margin: 17px
+      }
+      .layer{
+      position: absolute
+      }
+      .button a{
+      margin-left: 15px;
+      font-size:16px;
+      }
+
+  body
+    ul
+      if topic
+        header
+          #background
+            .layer
+              .BG
+                img(src=bgimgUrl+topic.bgFileName, alt='')
+            .layer
+              .container
+                #logo
+                #profile=topic.name+' '+topic.school+' '+topic.grade
+                #center=campursName.displayName
+            .layer
+              .photozone
+                .span
+                  #photo
+                    img(src=imagesUrl+topic.photoId, alt='', width='150')

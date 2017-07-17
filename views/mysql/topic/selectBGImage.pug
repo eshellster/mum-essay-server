@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title essay mu:m english
+    style(type='text/css').
+      @font-face {
+      font-family: 'Swagger00';
+      src: url('/public/css/webfont/Swagger00/Swagger00.eot?#iefix') format('embedded-opentype'),  url('/public/css/webfont/Swagger00/Swagger00.otf')  format('opentype'),
+      url('/public/css/webfont/Swagger00/Swagger00.woff') format('woff'), url('/public/css/webfont/Swagger00/Swagger00.ttf')  format('truetype'), url('/public/css/webfont/Swagger00/Swagger00.svg#Swagger00') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      }
+      body { font-family: 'Swagger00' !important; }
+      h1, h2, h3, h4 { font-weight: normal; }
+      .reg { color:black; background:white; }
+      .inverse { color:white; background:black; }
+      div { padding: 10px 15px; }
+      .right { background:white; width:30%; float: right; font-family: sans-serif;
+      #font2{
+        font-family: 'Swagger00' !important;
+      }
+
+  body
+  form(action='/topic/'+id+'/selectBGImg' method='post')
+    ul
+      p
+        | 배경이미지:
+
+        select(name='fileName')
+          each img in imgList
+            if img.fileName  == person.bgFileName
+              option(value = img.fileName, selected="selected" ) #{img.displayName}
+            else
+              option(value = img.fileName ) #{img.displayName}
+
+      p
+        input(type='submit')

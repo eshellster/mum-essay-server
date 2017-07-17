@@ -1,0 +1,17 @@
+extends ../frontBasisLayout
+block content
+  body
+    artcle
+      if id
+        h2= ' 배경추가'
+        h4= '이미지 사이즈는 가로 720 pixel 세로 540 pixel 입니다.'
+        h4= '이미지 확장자는 jpg 입니다.'
+    ul
+      form(action='/topic/'+id+'/addBGImg' method='post' enctype="multipart/form-data")
+        p
+          input(type='file' name='userfile' accept='image/*')
+        p
+          | 제목 입력 필수
+          input(type='text', name='displayName', placeholder='발표할 주제와 같은 제목', required='')
+        p
+          input(type='submit')
