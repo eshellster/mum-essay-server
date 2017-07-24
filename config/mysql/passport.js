@@ -16,7 +16,6 @@ module.exports = function(app) {
   })
 
   passport.deserializeUser(function(id, done) {
-    console.log('++++ deserializeuser : ', id)
     var sql = 'SELECT * FROM member WHERE authId=?'
     connection.query(sql, [id], function(err,results){
       if(err){
