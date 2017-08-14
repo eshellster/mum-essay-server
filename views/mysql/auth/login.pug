@@ -1,15 +1,94 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title essay mu:m english
-  body
-    h1 Login
-    form(action='/auth/login', method='post')
-      p
-        input(type='text', name='username', placeholder='성함')
-      p
-        input(type='password', name='password', placeholder='비밀번호')
-      p
-        input(type='submit', value='로그인')
+extends ../../head_standard_mata.pug
+block properties 
+        // Site Properties
+        title Login Example - Semantic
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/reset.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/site.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/container.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/grid.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/header.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/image.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/menu.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/divider.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/segment.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/form.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/input.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/button.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/list.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/message.css")
+        link(rel="stylesheet", type="text/css", href="/semantic/out/components/icon.css")
+        script(src="/semantic/out/components/form.js")
+        script(src="/semantic/out/components/transition.js")
+        style(type="text/css").
+            body {
+            background-color: #FFCA05;
+            }
+            body > .grid {
+            height: 100%;
+            }
+            .column {
+            max-width: 450px;
+            margin: 30px;
+            }
+        script.
+            $(document)
+            .ready(function() {
+            $('.ui.form')
+            .form({
+            fields: {
+            name: {
+            identifier  : 'username',
+            rules: [
+            {
+            type   : 'empty',
+            prompt : '등록하신 본인의 성함을 입력해주세요'
+            }
+            ]
+            },
+            password: {
+            identifier  : 'password',
+            rules: [
+            {
+            type   : 'empty',
+            prompt : '비밀번호를 입력하세요'
+            },
+            {
+            type   : 'length[4]',
+            prompt : '비밀번호 자리수는 4개 이상 입력되어야 합니다.'
+            }
+            ]
+            }
+            }
+            })
+            ;
+            })
+            ;
+block content
+        //body
+        .ui.middle.aligned.center.aligned.grid
+            .column
+                svg.image(viewbox='0 0 44 41', width='100')
+                  use(xlink:href='/public/svg/black.svg#Page-1')
+                h2.ui.teal.header
+                    .content
+                        | 등록한 이름으로 계정에 로그인 하세요.
+                form(action='/auth/login', method='post').ui.large.form
+                    .ui.stacked.segment
+                        .field
+                            .ui.left.icon.input
+                                i.user.icon
+                                input(type='text', name='username', placeholder='성함')
+                        .field
+                            .ui.left.icon.input
+                                i.lock.icon
+                                input(type='password', name='password', placeholder='비밀번호')
+                        .ui.fluid.large.teal.submit.button Log in
+                    .ui.error.message
+                .ui.message
+                    | 계정이 없으신가요?  
+                    a(href='/auth/register') 가입하기
+                footer.footer
+                  .ui.horizontal.divider
+                    | 등록시스템 관련 문의
+                  |  뮤엠 이천신하센터 010-3712-0288, 031-632-0907 
+              

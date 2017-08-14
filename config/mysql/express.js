@@ -6,6 +6,7 @@ module.exports = function(){
   var fs = require('fs')
   var app = express()
 
+  app.use('/semantic',express.static('semantic'));
   app.set('views', './views')
   app.set('view engine', 'pug')
   app.use('/public', express.static('public'));
