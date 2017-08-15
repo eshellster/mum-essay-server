@@ -5,7 +5,7 @@ module.exports = function(){
   var mySQLStore = require('express-mysql-session')(session)
   var fs = require('fs')
   var app = express()
-
+  app.use('/css',express.static('css'))
   app.use('/semantic',express.static('semantic'));
   app.set('views', './views')
   app.set('view engine', 'pug')

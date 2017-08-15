@@ -1,33 +1,53 @@
-extends ../frontLayout
+extends ../../head_standard_mata.pug
+block properties 
+        // Site Properties
+        title mu:m essay colletion
+        script(src="/semantic/out/components/form.js")
+        script(src="/semantic/out/components/transition.js")
+        style(type="text/css").
+          body {
+            background-color: #DADADA;
+          }
+          body > .grid {
+            height: 100%;
+          }
+          .image {
+            margin-top: -100px;
+          }
+          .column {
+            max-width: 270px;
+          }
 block content
-  artcle
-    h3 학생등록
-    form(action='/topic/add' method='post' enctype="multipart/form-data")
-      p
-        | 이름 :
-        input(type='text', name='name', placeholder='이름.', autofocus='', required='')
-      p
-        | 발표 topic
-        input(type='text', name='topic', placeholder='발표할 주제', required='')
-      p
-        | 코스 :
-        - courseList = ['White','Yellow','Green','Blue','Red','Black']
-        select(name='course')
-          each item in courseList
-            option(value = item ) #{item}
-      p
-        | 레벨
-        input(type='text' name='level' placeholder='LW1')
-      p
-        | 학교
-        input(type='text' name='school' placeholder='**초등학교')
-      p
-        | 학년:
-        - grades = ['1학년','2학년','3학년','4학년','5학년','6학년']
-        select(name='grade')
-          each item in grades
-            option(value = item ) #{item}
-      p
-        input(type='file' name='userfile' accept='image/*' required='')
-      p
-        input(type='submit')
+  .ui.middle.aligned.center.aligned.grid    
+    .column  
+      .ui.container.left.aligned
+        .ui.h3.header 학생등록
+        form(action='/topic/add' method='post' enctype="multipart/form-data").ui.form
+          p
+            | 이름 :
+            input(type='text', name='name', placeholder='이름.', autofocus='', required='')
+          p
+            | 발표 topic
+            input(type='text', name='topic', placeholder='발표할 주제', required='')
+          p
+            | 코스 :
+            - courseList = ['White','Yellow','Green','Blue','Red','Black']
+            select(name='course')
+              each item in courseList
+                option(value = item ) #{item}
+          p
+            | 레벨
+            input(type='text' name='level' placeholder='LW1')
+          p
+            | 학교
+            input(type='text' name='school' placeholder='**초등학교')
+          p
+            | 학년:
+            - grades = ['1학년','2학년','3학년','4학년','5학년','6학년']
+            select(name='grade')
+              each item in grades
+                option(value = item ) #{item}
+          p
+            input(type='file' name='userfile' accept='image/*' required='')    
+          p  
+            input(type='submit').ui.huge.primary.button

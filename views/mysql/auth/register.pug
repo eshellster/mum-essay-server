@@ -2,23 +2,7 @@
 extends ../../head_standard_mata.pug
 block properties  
         // Site Properties
-        title Login Example - Semantic
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/reset.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/site.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/container.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/grid.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/header.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/image.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/menu.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/divider.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/segment.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/form.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/input.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/button.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/list.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/message.css")
-        link(rel="stylesheet", type="text/css", href="/semantic/out/components/icon.css")
-          
+        title mu:m essay colletion
         script(src="/semantic/out/components/form.js")
         script(src="/semantic/out/components/transition.js")
         style(type="text/css").
@@ -32,9 +16,14 @@ block properties
             max-width: 450px;
             margin: 30px;
             }
-            .content {
+            h1 .content {
               color: #06776C;
               margin-top: 50px;
+              margin-bottom: 30px;
+            }
+            h2 .content {
+              color: #06776C;
+              margin-top: 20px;
               margin-bottom: 30px;
             }
             #logo {
@@ -44,9 +33,14 @@ block properties
 block content
         .ui.middle.aligned.center.aligned.grid
             .column
-                h2.ui.teal.header
-                    .content
-                        |  참가 원장님 등록 페이지 입니다.
+                .header
+                  h1.ui.teal
+                      .content
+                          | My First Essay Collection
+                  h2.ui.teal
+                      .content
+                          |  참가 원장님 등록 페이지 입니다.
+                      
                 form(action='/auth/register', method='post').ui.large.form
                     .ui.stacked.segment
                         .field
@@ -93,36 +87,12 @@ block content
             .form({
             fields: {
             
-            name: {
-            identifier  : 'name',
+            username: {
+            identifier  : 'username',
             rules: [
             {
             type   : 'empty',
             prompt : '이름을 입력해주세요'
-            }
-            ]
-            },
-            
-            email: {
-            identifier  : 'email',
-            rules: [
-            {
-            type   : 'empty',
-            prompt : 'e-mail을 입력해주세요'
-            },
-            {
-            type   : 'email',
-            prompt : '정확한 e-mail을 입력해주세요'
-            }
-            ]
-            },
-            
-            campusName: {
-            identifier  : 'displayName',
-            rules: [
-            {
-            type   : 'empty',
-            prompt : '캠퍼스 이름을 입력해주세요'
             }
             ]
             },
@@ -147,6 +117,40 @@ block content
             {
             type   : 'match[password]',
             prompt : '비밀번호가 다릅니다.'
+            }
+            ]
+            },
+            
+            phone: {
+            identifier  : 'phone',
+            rules: [
+            {
+            type   : 'empty',
+            prompt : '휴대폰 번호를 입력해주세요'
+            }
+            ]
+            },
+            
+            email: {
+            identifier  : 'email',
+            rules: [
+            {
+            type   : 'empty',
+            prompt : 'e-mail을 입력해주세요'
+            },
+            {
+            type   : 'email',
+            prompt : '정확한 e-mail을 입력해주세요'
+            }
+            ]
+            },
+            
+            campusName: {
+            identifier  : 'displayName',
+            rules: [
+            {
+            type   : 'empty',
+            prompt : '캠퍼스 이름을 입력해주세요'
             }
             ]
             }

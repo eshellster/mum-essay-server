@@ -1,49 +1,58 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    style.
-      td{
-      text-align: center;
-      }
-      html{
-      color:#273F55;
-      }
-  body
-    ul
-      a(href='/topic') 돌아가기
-    h2 뮤엠영어 에세이 전시회 및 발표회 등록현황
-    h3='총인원 :'+ person.length
-    ul
-      table(border='1')
-            thead
-              tr
-                th 캠퍼스
-                th 학생
-                th 미리보기
-                th 학교
-                th 학년
-                th 발표주제
+extends ../../head_standard_mata.pug
+block properties 
+        // Site Properties
+        title mu:m essay colletion
+        script(src="/semantic/out/components/form.js")
+        script(src="/semantic/out/components/transition.js")
+        style(type="text/css").
+            body {
+            }
+            body > .grid {
+            height: 100%;
+            }
+            .column {
+            max-width: 450px;
+            margin: 30px;
+            }
+            .header {
+              display: inline;
+            }
+block content
+          .ui.inverted.vertical.masthead.center.aligned.segment
+            .ui.container
+              ul
+                a(href='/topic') 돌아가기
+              h2 뮤엠영어 에세이 전시회 및 발표회 등록현황
+              h3='총인원 :'+ person.length
+              ul
+          .ui.vertical.stripe.segment
+            .ui.text.container
+              table.table
+                    thead
+                      tr
+                        th 캠퍼스
+                        th 학생
+                        th 미리보기
+                        th 학교
+                        th 학년
+                        th 발표주제
 
 
-            - camp = ""
-            - oldCamp = ""
-            each i in person
-              - url = 'http://eshell.iptime.org:3000/topic/'+i.id+'/preview'
-              - newCamp = i.campurs
-                if newCamp == oldCamp
-                  - camp=""
-                else
-                  - camp=newCamp
-                tbody
-                  td=camp
-                  td=i.name
-                  td
-                    a(href=url) 미리보기
-                  td=i.school
-                  td=i.grade
-                  td=i.topic
-              - oldCamp = i.campurs
-
-      a(href='/topic') 돌아가기
+                    - camp = ""
+                    - oldCamp = ""
+                    each i in person
+                      - url = 'http://eshell.iptime.org:3000/topic/'+i.id+'/preview'
+                      - newCamp = i.campurs
+                        if newCamp == oldCamp
+                          - camp=""
+                        else
+                          - camp=newCamp
+                        tbody
+                          td=camp
+                          td=i.name
+                          td
+                            a(href=url) 미리보기
+                          td=i.school
+                          td=i.grade
+                          td=i.topic
+                      - oldCamp = i.campurs

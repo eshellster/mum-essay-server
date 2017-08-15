@@ -1,92 +1,58 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title essay mu:m english
-    style(type='text/css').
-      @font-face {
-      font-family: 'Swagger00';
-      src: url('/public/css/webfont/Swagger00/Swagger00.eot?#iefix') format('embedded-opentype'),  url('/public/css/webfont/Swagger00/Swagger00.otf')  format('opentype'),
-      url('/public/css/webfont/Swagger00/Swagger00.woff') format('woff'), url('/public/css/webfont/Swagger00/Swagger00.ttf')  format('truetype'), url('/public/css/webfont/Swagger00/Swagger00.svg#Swagger00') format('svg');
-      font-weight: normal;
-      font-style: normal;
-      }
-      body { font-family: 'Swagger00' !important; }
-      h1, h2, h3, h4 { font-weight: normal; }
-      .reg { color:black; background:white; }
-      .inverse { color:white; background:black; }
-      div { padding: 10px 15px; }
-      .right { background:white; width:30%; float: right; font-family: sans-serif;
-      #font2{
-        font-family: 'Swagger00' !important;
-      }
+extends ../../head_standard_mata.pug
+block properties 
+        // Site Properties
+        title mu:m essay colletion
+        script(src="/semantic/out/components/form.js")
+        script(src="/semantic/out/components/transition.js")
+        style(type="text/css").
+          body {
+            background-color: #DADADA;
+          }
+          body > .grid {
+            height: 100%;
+          }
+          .image {
+            margin-top: -100px;
+          }
+          .column {
+            max-width: 270px;
+          }
+block content
+  .ui.middle.aligned.center.aligned.grid    
+    .column  
+      .ui.container.left.aligned
+        .ui.h3.header 학생 등록정보 수정   
+          form(action='/topic/'+topic.id+'/edit' method='post').ui.form
+            p
+              | 이름:
+              input(type='text' name='name' placeholder='이름' value=topic.name)
+            p
+              | 발표 topic
+              input(type='text', name='topic', placeholder='발표할 주제', value=topic.topic)
+            p
+              | 코스:
+              - courseList = ['White','Yellow','Green','Blue','Red','Black']
+              select(name='course')
+                each item in courseList
+                  if item == topic.course
+                    option(value = item, selected="selected" ) #{item}
+                  else
+                    option(value = item ) #{item}
 
-  body
-  if user
-    li#font2
-      tb.deactive
-        a(href='/auth/logout') Logout
-      tb
-        a(href='/topic/present') essay 등록현황
-      tb
-        h4= user.username + " 원장님"
-      tb
-        h6="연락처 : " + user.phone + "  email : " + user.email
-  else
-    li
-      tb
-        a(href='/auth/register') 원장님등록
-      tb
-        a(href='/auth/login') 로그인
-  h1
-    a(href='/topic/present') 뮤엠영어 에세이 전시회 및 발표회
-    ul#account
-      if user
-        h3(style='color:purple')=user.displayName
-
-  if user
-    h2
-      a(href='/topic') 학생 등록 현황
-    ul
-      each topi in topics
-        li
-          a(href='/topic/'+topi.id)= topi.name
-    ul
-      li
-        a(href='/topic/add') 참가자 등록
-  artcle
-    form(action='/topic/'+topic.id+'/edit' method='post')
-      p
-        | 이름:
-        input(type='text' name='name' placeholder='이름' value=topic.name)
-      p
-        | 발표 topic
-        input(type='text', name='topic', placeholder='발표할 주제', value=topic.topic)
-      p
-        | 코스:
-        - courseList = ['White','Yellow','Green','Blue','Red','Black']
-        select(name='course')
-          each item in courseList
-            if item == topic.course
-              option(value = item, selected="selected" ) #{item}
-            else
-              option(value = item ) #{item}
-
-      p
-        | 레벨:
-        input(type='text' name='level' placeholder='LW1' value=topic.level)
-      p
-        | 학교:
-        input(type='text' name='school' placeholder='**초등학교' value=topic.school)
-      p
-        | 학년:
-        - grades = ['1학년','2학년','3학년','4학년','5학년','6학년']
-        select(name='grade')
-          each item in grades
-            if item == topic.grade
-              option(value = item, selected="selected" ) #{item}
-            else
-              option(value = item ) #{item}
-      p
-        input(type='submit')
+            p
+              | 레벨:
+              input(type='text' name='level' placeholder='LW1' value=topic.level)
+            p
+              | 학교:
+              input(type='text' name='school' placeholder='**초등학교' value=topic.school)
+            p
+              | 학년:
+              - grades = ['1학년','2학년','3학년','4학년','5학년','6학년']
+              select(name='grade')
+                each item in grades
+                  if item == topic.grade
+                    option(value = item, selected="selected" ) #{item}
+                  else
+                    option(value = item ) #{item}
+            p
+              input(type='submit').ui.huge.primary.button
