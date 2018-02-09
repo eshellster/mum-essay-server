@@ -6,7 +6,6 @@ mySQL 형식으로 변환하기 위해 엑셀에서 변환
 
 ```sql
     UPDATE `person` SET `memberOrder` = '1' WHERE `person`.`name` LIKE '이름%';
-+ TEST
 ```
 ![엑셀 샘플](https://i.imgur.com/Oj5G0t4.jpg)
 
